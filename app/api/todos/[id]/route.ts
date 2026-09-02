@@ -37,6 +37,7 @@ export async function GET(request: NextRequest, context: RouteContext) {
     return NextResponse.json(successPayload, { status: 200 });
 
 // 15. Tangani Error Server (500)
+  // ... kode di atasnya ...
   } catch (error) {
     return NextResponse.json(
       {
@@ -48,4 +49,5 @@ export async function GET(request: NextRequest, context: RouteContext) {
       { status: 500 }
     );
   }
-}
+} // <--- Pastikan kurung kurawal penutup fungsi GET ini ada di paling bawah
+
