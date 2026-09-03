@@ -5,26 +5,25 @@ import { TaskItem } from "@/types/api-todo";
 import { todoService } from "@/services/todoService";
 import { Badge } from "@/app/components/ui/badge";
 
-// 6. Definisikan Props dan Inisialisasi State Lokal
 interface ApiTodoListProps {
-    initialTasks: TaskItem[]; //hehe
+    initialTasks: TaskItem[];
 }
 
-export default function ApiTodoList({ initialTasks }: ApiTodoListProps) {
+export default function ApiTodoList({ initialTasks = [] }: ApiTodoListProps) {
     const [tasks, setTasks] = useState<TaskItem[]>(initialTasks);
 
-    // 4. Implementasi Logika Optimistic Update
+
     const handleToggleTask = async (id: number, currentCompleted: boolean) => {
         const targetStatus = !currentCompleted;
 
-        // 1. Optimistic Update di State Lokal
+        
         setTasks((prev) =>
             prev.map((t) =>
                 t.id === id ? { ...t, completed: targetStatus } : t,
             ),
         );
 
-        // 2. Simulasi Update ke DummyJSON via todoService
+        
         try {
             await todoService.updateTodoStatus(id, targetStatus);
         } catch (err) {
@@ -64,7 +63,7 @@ export default function ApiTodoList({ initialTasks }: ApiTodoListProps) {
                                     : "bg-white border-gray-100 hover:border-primary-70/40"
                             }`}>
                             <div className="flex items-start sm:items-center gap-3.5 flex-1 pr-2">
-                                {/* Simple Checkbox */}
+                                {}
                                 <input
                                     type="checkbox"
                                     checked={task.completed}
@@ -72,7 +71,7 @@ export default function ApiTodoList({ initialTasks }: ApiTodoListProps) {
                                     className="mt-0.5 sm:mt-0 h-5 w-5 shrink-0 cursor-pointer accent-primary-70"
                                 />
 
-                                {/* Title */}
+                                {}
                                 <div>
                                     <p
                                         className={`text-xs md:text-sm font-medium leading-relaxed transition-all ${
@@ -88,7 +87,7 @@ export default function ApiTodoList({ initialTasks }: ApiTodoListProps) {
                                 </div>
                             </div>
 
-                            {/* Badges on right (desktop) - Kontras, Tanpa Abu-abu */}
+                            {}
                             <div className="hidden sm:flex items-center gap-2 shrink-0">
                                 <Badge variant="purple" size="default">
                                     ID: #{task.id}
@@ -110,4 +109,4 @@ export default function ApiTodoList({ initialTasks }: ApiTodoListProps) {
             </div>
         </div>
     );
-} // <--- KURUNG KURAWAL PENUTUP INI YANG TADI KURANG
+}
