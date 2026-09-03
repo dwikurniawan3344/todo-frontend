@@ -12,11 +12,20 @@ export interface TodosApiResponse {
   limit: number;
 }
 
-// Tambahkan bagian ini jika belum ada:
 export interface TaskItem {
   id: number;
   title: string;
   completed: boolean;
   userId: number;
-  source: string;
+  source: 'dummyjson-api';
+}
+
+export interface ApiResponse<T = unknown> {
+  success: boolean;
+  message: string;
+  data?: T;
+  count?: number;
+  total?: number;
+  timestamp: string;
+  error?: string;
 }
